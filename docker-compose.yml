@@ -9,7 +9,5 @@ services:
   mickey:
     container_name: playtime_mickey
     image: nginx:1.21
-    ports:
-      - 3210:80
     volumes:
       - ${PWD}/mickey/html:/usr/share/nginx/html
