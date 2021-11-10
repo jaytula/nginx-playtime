@@ -5,9 +5,42 @@ services:
     build: ./ingress
     ports:
       - 80:80
+    depends_on:
+      - wordpress
+      - mickey
 
   mickey:
     container_name: playtime_mickey
     image: nginx:1.21
     volumes:
       - ${PWD}/mickey/html:/usr/share/nginx/html
+
+  wordpress:
+    container_name: playtime_wordpress
+    image: wordpress:5.8-fpm
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - ${PWD}/wordpress:/var/www/html;
+    depends_on:
+      - db
+
+  db:
+    container_name: playtime_wordpress_db
+    image: mariadb:10.6
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
