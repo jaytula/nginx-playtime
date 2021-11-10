@@ -8,12 +8,19 @@ services:
     depends_on:
       - wordpress
       - mickey
+      - fpm
 
   mickey:
     container_name: playtime_mickey
     image: nginx:1.21
     volumes:
       - ${PWD}/mickey/html:/usr/share/nginx/html
+  
+  fpm:
+    container_name: playtime_fpm
+    image: php:7.4-fpm
+    volumes:
+      - ${PWD}/fpm/html:/var/www/html
 
   wordpress:
     container_name: playtime_wordpress
