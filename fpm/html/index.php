@@ -1,4 +1,5 @@
 <?php
-echo phpinfo();
+phpinfo();
+?>
 
-echo '<h1>Blah</h1';
+<h1 style="text-align: center">Blah</h1>
