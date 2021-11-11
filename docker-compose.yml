@@ -23,7 +23,7 @@ services:
     container_name: playtime_fpm
     image: php:7.4-fpm
     volumes:
-      - ${PWD}/fpm/html:/var/www/html
+      - ${PWD}/fpm/html:/var/www/fpm/html
 
   wordpress:
     container_name: playtime_wordpress
