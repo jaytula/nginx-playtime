@@ -9,11 +9,14 @@ services:
       - wordpress
       - mickey
       - fpm
+    volumes:
+      - ${PWD}/ingress/html2:/var/www/html
 
   mickey:
     container_name: playtime_mickey
     image: nginx:1.21
     volumes:
+      - ${PWD}/mickey/conf.d:/etc/nginx/conf.d
       - ${PWD}/mickey/html:/usr/share/nginx/html
   
   fpm:
