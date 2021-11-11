@@ -10,7 +10,7 @@ services:
       - mickey
       - fpm
     volumes:
-      - ${PWD}/ingress/html2:/var/www/html2
+      - ${PWD}/data/wordpress:/var/www/html
 
   mickey:
     container_name: playtime_mickey
@@ -35,7 +35,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ${PWD}/wordpress:/var/www/html;
+      - ${PWD}/data/wordpress:/var/www/html
     depends_on:
       - db
 
