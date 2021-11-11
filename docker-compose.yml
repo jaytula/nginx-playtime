@@ -10,7 +10,7 @@ services:
       - mickey
       - fpm
     volumes:
-      - ${PWD}/ingress/html2:/var/www/html
+      - ${PWD}/ingress/html2:/var/www/html2
 
   mickey:
     container_name: playtime_mickey
