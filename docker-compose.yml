@@ -25,6 +25,15 @@ services:
     volumes:
       - ${PWD}/fpm/html:/var/www/fpm/html
 
+  cra:
+    image: node:16
+    ports:
+      - 4000:3000
+    working_dir: /home/node/app
+    volumes:
+      - ${PWD}/cra:/home/node/app
+    command: "npm start"
+
   wordpress:
     container_name: playtime_wordpress
     image: wordpress:5.8-fpm
