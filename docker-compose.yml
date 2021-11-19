@@ -26,6 +26,7 @@ services:
       - ${PWD}/fpm/html:/var/www/fpm/html
 
   cra:
+    container_name: playtime_cra
     image: node:16
     ports:
       - 4000:3000
@@ -59,6 +60,18 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql
+
+  apache:
+    container_name: playtime_apache
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - 4100:80
+    volumes:
+      - ${PWD}/apache/html:/var/www/html
+      - ${PWD}/apache/sites-available:/etc/apache2/sites-available
+
 
 volumes:
   wordpress:
